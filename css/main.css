@@ -1310,30 +1310,170 @@ html, body {
 }
 
 .bg__cats {
+  position: absolute;
   pointer-events: none;
-  width: 100%;
-  height: 100%;
+  width: 834px;
+  height: 370px;
   background-image: url("../img/cat.svg");
   background-repeat: no-repeat;
   background-size: 100%;
+  scale: 1;
+  top: 30%;
+  right: -10%;
+  transition: scale 0.6s ease;
+}
+@media (max-width: 1470px) {
+  .bg__cats {
+    scale: 0.7;
+  }
+}
+@media (max-width: 1170px) {
+  .bg__cats {
+    scale: 0;
+  }
+}
+
+.sky {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.cloud {
+  position: absolute;
+  background-image: url("../img/bg/cloud.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
   scale: 1.3;
-  transform: translate(20%, -35%);
 }
-@media (max-width: 1600px) {
-  .bg__cats {
-    scale: 0.9;
-    transform: translate(20%, -50%);
+.cloud__first {
+  width: 204px;
+  height: 68px;
+  top: 79px;
+  animation: move1 110s infinite linear;
+}
+.cloud__second {
+  width: 177px;
+  height: 60px;
+  top: 10px;
+  animation: move2 130s infinite linear;
+}
+.cloud__third {
+  width: 91px;
+  height: 30px;
+  top: 44px;
+  animation: move3 160s infinite linear;
+}
+.cloud__fourth {
+  width: 110px;
+  height: 37px;
+  top: 66px;
+  animation: move4 180s infinite linear;
+}
+@keyframes move1 {
+  0% {
+    right: -17px;
+    opacity: 1;
+  }
+  90% {
+    right: 100%;
+    opacity: 1;
+  }
+  91% {
+    right: 100%;
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+    right: -200px;
+  }
+  93% {
+    opacity: 1;
+    right: -200px;
+  }
+  100% {
+    right: -17px;
+    opacity: 1;
   }
 }
-@media (max-width: 1140px) {
-  .bg__cats {
-    scale: 0.5;
-    transform: translate(20%, -100%);
+@keyframes move2 {
+  0% {
+    right: 687px;
+    opacity: 1;
+  }
+  60% {
+    right: 100%;
+    opacity: 1;
+  }
+  61% {
+    right: 100%;
+    opacity: 0;
+  }
+  62% {
+    opacity: 0;
+    right: -200px;
+  }
+  63% {
+    opacity: 1;
+    right: -200px;
+  }
+  100% {
+    right: 687px;
+    opacity: 1;
   }
 }
-@media (max-width: 1070px) {
-  .bg__cats {
-    display: none;
+@keyframes move3 {
+  0% {
+    right: 404px;
+    opacity: 1;
+  }
+  40% {
+    right: 100%;
+    opacity: 1;
+  }
+  41% {
+    right: 100%;
+    opacity: 0;
+  }
+  42% {
+    opacity: 0;
+    right: -200px;
+  }
+  43% {
+    opacity: 1;
+    right: -200px;
+  }
+  100% {
+    right: 404px;
+    opacity: 1;
+  }
+}
+@keyframes move4 {
+  0% {
+    right: 553px;
+    opacity: 1;
+  }
+  50% {
+    right: 100%;
+    opacity: 1;
+  }
+  51% {
+    right: 100%;
+    opacity: 0;
+  }
+  52% {
+    opacity: 0;
+    right: -200px;
+  }
+  53% {
+    opacity: 1;
+    right: -200px;
+  }
+  100% {
+    right: 553px;
+    opacity: 1;
   }
 }
 
@@ -2315,15 +2455,16 @@ html, body {
   margin-bottom: 70px;
 }
 .address .how-to-pass {
-  display: grid;
-  grid-template-columns: 249px minmax(200px, 249px) 231px 228px 236px;
-  column-gap: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 80px;
 }
 .address .how-to-pass__description {
   font-family: "Montserrat Regular", sans-serif;
   font-size: 16px;
   line-height: 1.4;
   color: #242424;
+  max-width: 236px;
 }
 .address .how-to-pass__title {
   font-family: "Montserrat SemiBold", sans-serif;
@@ -2522,10 +2663,11 @@ div.accordeon__q {
   grid-template-columns: minmax(10px, auto) minmax(0, 1200px) minmax(10px, auto);
   grid-auto-rows: max-content;
   grid-template-rows: auto 1fr auto;
+  box-sizing: border-box;
 }
 .index-page > * {
   grid-column: 2/3;
 }
-.index-page > .footer, .index-page > .address {
+.index-page > .footer, .index-page > .address, .index-page > .sky {
   grid-column: 1/-1;
 }
