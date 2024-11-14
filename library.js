@@ -7174,6 +7174,9 @@
     }
   });
 
+  // Здесь можно задать промежуток в месяцах, в который можно сделать бронь
+  const availableMounths = 3;
+
   document.addEventListener("DOMContentLoaded", function() {
     // Функция для форматирования даты в формат YYYY-MM-DD
     function formatDate(date) {
@@ -7191,8 +7194,8 @@
     // Устанавливаем max дату, добавив 3 месяца к сегодняшней и завтрашней дате
     const maxStartDate = new Date(today);
     const maxEndDate = new Date(tomorrow);
-    maxStartDate.setMonth(today.getMonth() + 3);
-    maxEndDate.setMonth(tomorrow.getMonth() + 3);
+    maxStartDate.setMonth(today.getMonth() + availableMounths);
+    maxEndDate.setMonth(tomorrow.getMonth() + availableMounths);
 
     // Получаем элементы инпутов
     const startDateInput = document.getElementById("start-date");

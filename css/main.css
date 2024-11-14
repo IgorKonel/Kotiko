@@ -2154,7 +2154,6 @@ html, body {
   top: 0px;
   left: 0px;
   z-index: -1;
-  transform: translate(-78px, -20px);
 }
 .booking-request > form {
   display: grid;
@@ -2244,7 +2243,6 @@ form > input.color-text {
     width: 100%;
   }
   .booking-request__wrapper-img::before {
-    transform: translate(0, 0);
     background-size: contain;
   }
   .booking-request > form {
