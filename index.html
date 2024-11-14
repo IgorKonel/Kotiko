@@ -58,22 +58,28 @@
 
     <ul class="header__info-list">
         <li class="header__info-item">
-            <svg class="header__info-icon">
-                <use href="#icon-header-map"></use>
-            </svg>
-            <a class="header__info-link" href="https://yandex.kz/maps/org/kotiko/78589228606/?ll=30.411188%2C59.974671&utm_source=share&z=16">г. Санкт-Петербург ул. Ключевая, дом 32 </a>
+            <a class="header__info-link" href="https://yandex.kz/maps/org/kotiko/78589228606/?ll=30.411188%2C59.974671&utm_source=share&z=16">
+                <svg class="header__info-icon">
+                    <use href="#icon-header-map"></use>
+                </svg>
+                <p>г. Санкт-Петербург ул. Ключевая, дом 32</p>
+            </a>
         </li>
         <li class="header__info-item">
-            <svg class="header__info-icon">
-                <use href="#icon-header-clock"></use>
-            </svg>
-            <span>Круглосуточно</span>
+            <a class="header__info-link">
+                <svg class="header__info-icon">
+                    <use href="#icon-header-clock"></use>
+                </svg>
+                <span>Круглосуточно</span>
+            </a>
         </li>
         <li class="header__info-item">
-            <svg class="header__info-icon">
-                <use href="#icon-header-phone"></use>
-            </svg>
-            <a class="header__info-link" href="#">+7 (905) 230-55-99</a>
+            <a class="header__info-link" href="tel:+79052305599">
+                <svg class="header__info-icon">
+                    <use href="#icon-header-phone"></use>
+                </svg>
+                <p>+7 (905) 230-55-99</p>
+            </a>
         </li>
     </ul>
     
@@ -198,6 +204,7 @@
   <a class="button button-link button-book" href="#">Забронировать</a>
 
 </section>
+
     <section class="room">
   <article class="slider-rooms">
   
@@ -237,6 +244,7 @@
   <a class="button button-link button-book" href="#">Забронировать</a>
 
 </section>
+    
     <section class="room">
   <article class="slider-rooms">
   
@@ -455,7 +463,7 @@
 
   <h1 class="main__title">Условия размещения</h1>
 
-  <section class="accommodation__section">
+  <section class="accommodation__section accommodation__section--price">
 
     <h3 class="accommodation__title">В стоимость проживания включено</h3>
 
@@ -471,7 +479,7 @@
   </section>
 
 
-  <section class="accommodation__section">
+  <section class="accommodation__section accommodation__section--rec">
 
     <h3 class="accommodation__title">Рекомендации</h3>
     <p class="accommodation__subtitle">Чтобы ускорить период адаптации котика к новым условиям возьмите с собой</p>
@@ -487,7 +495,7 @@
 
   </section>
 
-  <section class="accommodation__section">
+  <section class="accommodation__section accommodation__section--nutrition">
     <h3 class="accommodation__title">Питание</h3>
     <div class="accommodation__content">
       <p>Корм необходимо принести с собой из расчета периода нахождения котика в нашей гостинице, согласно индивидуальному плану кормления.</p>
@@ -496,7 +504,7 @@
 
   </section>
 
-  <section class="accommodation__section">
+  <section class="accommodation__section accommodation__section--important">
     <h3 class="accommodation__title">ВАЖНО!</h3>
     <ul class="accommodation__list">
       <li class="accommodation__item">Мы ежедневно наблюдаем за поведением и самочувствием Вашего котика!</li>
@@ -520,200 +528,51 @@
     <img src="./img/booking-request/cat_heart.svg" alt="Кот бронирования">
   </div>
   <form action="http://echo.htmlacademy.ru" method="post">
-    <input type="text" placeholder="Имя">
-    <input type="text" placeholder="Дата заезда">
-    <input type="text" placeholder="Телефон">
-    <input type="text" placeholder="Дата выезда">
-    <input type="text" placeholder="Кличка животного">
-    <input type="text" placeholder="Тип номера">
-    <input type="text" placeholder="Примечание">
+
+    <input class="color-text" type="text" placeholder="Имя">
+    <input 
+    class="color-text" 
+      type="date" 
+      id="start-date" 
+      name="start-date"
+      value="2024-11-30"
+      min="2024-11-14"
+      max="2025-12-31"
+      placeholder="Дата заезда">
+
+    <input class="color-text" type="text" placeholder="Телефон">
+
+    <input class="color-text" 
+    type="date" 
+    id="end-date" 
+    name="end-date"
+    value="2024-11-30"
+    min="2024-11-16"
+    max="2025-12-31"   
+    placeholder="Дата выезда">
+
+    <input  class="color-text" type="text" placeholder="Кличка животного">
+    <div class="container-select">
+      <select name="rooms-type" id="rooms-type">
+        <option value="type" styles="color: grey">Тип номера</option>
+        <option value="standart">Стандарт</option>
+        <option value="standart-plus">Стандарт Плюс</option>
+        <option value="grand">Гранд</option>
+      </select>
+    </div>
+    <input class="color-text" type="text" placeholder="Примечание">
     <button class="button" type="submit">Забронировать</button>
   </form>
 
 </section>
       <!-- Видеоналюдение -->
-      <section id="video-monitoring" class="video-monitoring">
-  <div class="video-monitoring__title">
-    <h2 class="main__title">Видеонаблюдение</h2>
-    <p>Чтобы увидеть вашего кота или кошку нужно войти под логином и паролем, которые вам выдали при заселении</p>
-  </div>
-  <ul class="video-monitoring__list">
-    <h4 class="video-monitoring__description">Выберите номер комнаты вашего котика и посмотрите, чем он сейчас занят</h4>
-    <li class="video-monitoring__item"><a href="#">1</a></li>
-    <li class="video-monitoring__item"><a href="#">2</a></li>
-    <li class="video-monitoring__item"><a href="#">3</a></li>
-    <li class="video-monitoring__item"><a href="#">4</a></li>
-    <li class="video-monitoring__item"><a href="#">5</a></li>
-    <li class="video-monitoring__item"><a href="#">6</a></li>
-    <li class="video-monitoring__item"><a href="#">7</a></li>
-    <li class="video-monitoring__item"><a href="#">8</a></li>
-    <li class="video-monitoring__item"><a href="#">9</a></li>
-    <li class="video-monitoring__item"><a href="#">10</a></li>
-    <li class="video-monitoring__item"><a href="#">11</a></li>
-    <li class="video-monitoring__item"><a href="#">12</a></li>
-    <li class="video-monitoring__item"><a href="#">13</a></li>
-    <li class="video-monitoring__item"><a href="#">14</a></li>
-    <li class="video-monitoring__item"><a href="#">15</a></li>
-    <li class="video-monitoring__item"><a href="#">16</a></li>
-    <li class="video-monitoring__item"><a href="#">17</a></li>
-  </ul>
-
-</section>
+      
       <!-- Всё о нас -->
-      <section id="about-us" class="about-us">
-
-  <section class="about-us__main">
-    <h1 class="main__title">Всё о нас</h1>
-    <p class="about-us__question">Где и с кем оставить своего котика на время отпуска?</p>
-  
-    <p class="about-us__advantages">Ценность нашей гостиницы в том, что вы можете полностью доверить нам заботу и уход за вашим котиком!</p>
-    <div class="about-us__container">
-      <p class="about-us__text">Многие из нас, планируя отпуск, или при необходимости уехать в командировку, или в период приезда гостей с аллергией и по другим причинам, сталкиваются с данным вопросом.</p>
-      <p class="about-us__text">В маленьких городах этот вопрос решается благодаря помощи родственников и соседей, которые возьмут котика к себе или станут регулярно его навещать, чтобы покормить и уделить внимание.</p>
-      <p class="about-us__text">В большом городе данная задача решается сложнее, т.к. из-за неблизких расстояний возникают неудобства ежедневно навещать Вашего котика. Данная ситуация негативно сказывается на режиме кормления и длительное отсутствие внимания является стрессом для животного.</p>
-    </div>
-  </section>
-
-  <section class="our-offer">
-    <h3 class="our-offer__title">Мы предлагаем</h3>
-    <ul class="our-offer__list our-offer__list__left">
-      <li class="our-offer__item">
-        <p>гостиница оснащена приточно-вытяжной вентиляцией, с регулировкой температуры в летний и зимний период</p>
-      </li>
-      <li class="our-offer__item">
-        <p>соблюдение санитарно-гигиенических норм</p>
-      </li>
-      <li class="our-offer__item">
-        <p>круглосуточное присутствие котоняни</p>
-      </li>
-      <li class="our-offer__item">
-        <p>кормление и уход (индивидуальный подход к каждому котику)</p>
-      </li>
-      <li class="our-offer__item">
-        <p>индивидуальные номера</p>
-        <ul>
-          <li>10 номеров более 2 кв. м с окном</li>
-          <li>6 номеров более 2 кв. м без окна</li>
-          <li>1 номер более 3 кв.м с окнами</li>
-        </ul>
-      </li>
-    </ul>
-
-    <ul class="our-offer__list our-offer__list__right">
-      <li class="our-offer__item">
-        <p>подготовка номера к заселению нового постояльца (обработка поверхностей дезинфицирующими средствами, кварцевание)</p>
-      </li>
-      <li class="our-offer__item">
-        <p>видеонаблюдение в режиме 24/7</p>
-      </li>
-      <li class="our-offer__item">
-        <p>наличие холодильника для хранения влажного корма</p>
-      </li>
-      <li class="our-offer__item">
-        <p>ежедневный фото/видеоотчет на мессенджеры</p>
-      </li>
-    </ul>
-
-  </section>
-
-  <section class="importantly">
-    <img class="importantly__img" src="./img/accommodation_cat.svg" alt="Отзеркаленный кот">
-    <div class="importantly__content">
-      <h3 class="importantly__title">Важно!</h3>
-      <p class="importantly__text">При необходимости медицинского наблюдения за больным котиком или после операции, для его безопасности, рекомендуем выбирать гостиницу при ветеринарной клинике, т.к. гостиница для кошек не является медицинским учреждением, а предоставляет услуги по временному содержанию животных.</p>
-    </div>
-
-  </section>
-</section>
+      
       <!-- Страхи котовладельца -->
-      <section class="fears">
-  <h2 class="main__title">Страхи котовладельца</h2>
-
-
-  <div class="accordeon">
-    <div class="accordeon__item">
-      <div class="accordeon__q">Вдруг моя кошка почувствует себя плохо, а я на другом конце света и не могу ничего предпринять?</div>
-      <div class="accordeon__a">
-        <p>При малейшем отклонении от нормы поведения или состояния кошки, мы незамедлительно сообщим Вам. С Вашего согласия мы обратимся в ветеринарную клинику и сообщим о результатах осмотра и принятых ветеринаром решений (при необходимости Вы сможете лично переговорить с врачом).</p>
-        <p>Если кошечке понадобится лечение, мы осуществим все необходимые действия. При выезде мы предоставим все документы и чеки на оплату услуг ветклиники.</p>
-  
-
-        
-      </div>
-    </div>
-    <div class="accordeon__item">
-      <div class="accordeon__q">Мою кошку посадят в номер и забудут о ней!</div>
-      <div class="accordeon__a">
-        <p>Миссия зоогостиницы - забота и уход за Вашей кошечкой!</p>
-    
-        <p>Мы несем ответственность за Вашего котика не только моральную, но и юридическую. При заселении котика заключается договор на оказание услуг по уходу и содержанию животного.</p>
       
-        <p>Также Вам ежедневно направляется фото/видеоотчет о досуге Вашего котика. В любой момент Вы можете проконтролировать котика при помощи видеонаблюдения 24/7.</p>
-      
-      </div>
-    </div>
-    <div class="accordeon__item">
-      <div class="accordeon__q">Мой котик боится замкнутых пространств!</div>
-      <div class="accordeon__a">
-        <p>В этом случае, скорее всего была ситуация, при которой у котика выработалось негативное закрепление (случайно надолго закрыли в шкафу или закрыли в кладовке с целью наказания). Необходимо проработать положительное закрепление! (посидеть с ним вместе в этом замкнутом пространстве, обязательно покормить и окружить любовью, через несколько повторений котик поймет, что кладовка - это не страшно).</p>
-      </div>
-    </div>
-    <div class="accordeon__item">
-      <div class="accordeon__q">Боюсь реакции на присутствие незнакомых котику людей!</div>
-      <div class="accordeon__a">
-        <p>Кошки живут в мире запахов.</p>
-        <p>Им необходимо дать время на адаптацию к новым условиям, постепенно приучать к присутствию нового человека (покормить, напоить, поднести руку к мордочке) и только после того, как котик пойдет на контакт - погладить!</p>
-        <p>Если кошечка слишком впечатлительная и плохо переносит изменения, за пару дней до визита в зоогостиницу используйте успокаивающие капли (согласно инструкции), они безопасны для животного!</p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (() => {
-      const items = document.querySelectorAll(`.accordeon__item`);
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        item.addEventListener(`click`, ({ target }) => {
-          item.classList.toggle(`shown`);
-
-          // const prnt = target.parentElement;
-          // const a = prnt.querySelector(`.accordeon__a`);
-          // a.classList.toggle(`shown`);
-        });
-      }
-    })();
-  </script>
-
-</section>
-
       <!-- Сотрудничество -->
-      <section class="collaboration">
-  
-  <div class="collaboration__text-block">
-    <h2 class="main__title">Сотрудничество</h2>
-    <p class="collaboration__title">Приглашаем к сотрудничеству</p>
-    <p class="collaboration__description">Сотрудничество на основе коллаборации: совместные конкурсы, скидочные купоны, кэшбек и тп.</p>
-
-  </div>
-  <div class="collaboration__paw-block"> 
-    <ul class="collaboration__list">
-      <li class="collaboration__item">
-        <p>Ветеринарные клиники</p>
-      </li>
-      <li class="collaboration__item">
-        <p>Зоомагазины</p>
-      </li>
-      <li class="collaboration__item">
-        <p>Грумеров</p>
-      </li>
-      <li class="collaboration__item">
-        <p>Туристические фирмы</p>
-      </li>
-    </ul>
-
-  </div>
-
-</section>
+      
       
       
       <!-- <script type="text/javascript" charset="utf-8"  src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7a26ce0872d74a2b6b348f13bb0899178f5ee7aaec7a3aa2b1015afc2d632c95&amp;max-width=1200&amp;height=500&amp;lang=ru_RU&amp;scroll=true" async defer></script> -->
@@ -721,106 +580,9 @@
     </main>
     
     <!-- Адрес -->
-    <section class="address">
-  <div class="address__wrapper">
-    <h2 class="main__title">Адрес и контакты</h2>
-  
-    <div class="address__info">
-      <p class="address__address">г. Санкт-Петербург ул. Ключевая, д.32</p>
-      <button id="copy_address" type="button">
-        Скопировать адрес для навигатора
-        <div id="popupMessage" class="hidden">Адрес скопирован!</div>
-      </button>
-      
-    </div>
-    <div class="map">
-      <script
-        type="text/javascript"
-        charset="utf-8"
-        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7a26ce0872d74a2b6b348f13bb0899178f5ee7aaec7a3aa2b1015afc2d632c95&amp;max-width=1200&amp;height=500&amp;lang=ru_RU&amp;scroll=true"
-        async
-        defer
-      ></script>
-    </div>
-  
-    <div class="how-to-pass">
-      <div class="how-to-pass__title">
-        <h4 class="how-to-pass__title-text">Как пройти</h4>
-        <img src="../img/how-to-pass/paw.svg" alt="">
-      </div>
-  
-      <div class="how-to-pass__step">
-        <img src="./img/how-to-pass/step1.jpg" alt="Шаг первый">
-        <p class="how-to-pass__description">Мы находимся в здании многоуровневой парковки со стороны двора</p>
-      </div>
-  
-      <div class="how-to-pass__step">
-        <img src="./img/how-to-pass/step2.jpg" alt="Шаг второй">
-        <p class="how-to-pass__description">Вход со двора под вывеской "Вход" 5 этаж</p>
-      </div>
-      <div class="how-to-pass__step">
-        <img src="./img/how-to-pass/step3.jpg" alt="Шаг третий">
-        <p class="how-to-pass__description">Если навигатор привел Вас со стороны бизнес центра к шлагбауму, можно пройти по тропинке направо</p>
-      </div>
-  
-    </div>
-  
-  </div>
-</section>
-
-<script>
-  const popupMessage = document.getElementById('popupMessage');
-
-  document
-    .querySelector("#copy_address")
-    .addEventListener("click", function () {
-      navigator.clipboard
-        .writeText(document.querySelector(".address__address").textContent)
-        .then(function () {
-          // console.log('Text copied to clipboard');
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-        });
-
-        popupMessage.classList.remove('hidden');
-  
-        // Перезапускаем анимацию, удалив и добавив элемент (для повторных кликов)
-        void popupMessage.offsetWidth; // Сбрасываем CSS-анимацию
-        popupMessage.classList.add('fade');
-
-        // Скрываем сообщение по завершении анимации
-        setTimeout(() => {
-          popupMessage.classList.add('hidden');
-        }, 3000);
-    });
-</script>
-
+    
     <!-- FOOTER -->
-    <footer class="footer">
-    <div class="footer__wrapper">
-        <p class="footer__copyright">Copyright © 2021</p>
-        <nav class="menu">
-  <ul class="menu__list">
-    <li class="menu__item">
-      <a href="#rooms-prices" class="menu__item-link">Номера и цены</a>
-    </li>
-    <li class="menu__item">
-      <a href="#booking-request" class="menu__item-link">Заявка на бронирование</a>
-    </li>
-    <li class="menu__item">
-      <a href="#" class="menu__item-link">Оплатить</a>
-    </li>
-    <li class="menu__item">
-      <a href="#video-monitoring" class="menu__item-link">Видеонаблюдение</a>
-    </li>
-    <li class="menu__item">
-      <a href="#about-us" class="menu__item-link">Всё о нас</a>
-    </li>
-  </ul>
-</nav>
-    </div>
-</footer>
+    
 
     <script src="./library.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->

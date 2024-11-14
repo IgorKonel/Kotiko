@@ -1223,7 +1223,6 @@ template {
   justify-content: center;
 }
 .header__info-item {
-  display: flex;
   align-items: center;
   max-width: 180px;
   gap: 5px;
@@ -1234,6 +1233,11 @@ template {
 .header__info-link {
   color: #242424;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.header__info-link:hover .header__info-icon {
+  fill: #7E468E;
 }
 .header .logo {
   line-height: 0;
@@ -1252,6 +1256,7 @@ template {
 }
 .header__info-icon {
   margin: 0;
+  margin-right: 5px;
   padding: 0;
   width: 25px;
   height: 25px;
@@ -1260,10 +1265,15 @@ template {
   fill: #F6A6BF;
   transition: all 500ms ease;
 }
-.header__info-icon:hover {
-  fill: #7E468E;
-}
 
+@media (max-width: 992px) {
+  .logo {
+    order: -2;
+  }
+  .button__link--instagram {
+    order: -1;
+  }
+}
 html, body {
   height: 100%;
   padding: 0;
@@ -1531,13 +1541,20 @@ html, body {
 }
 .aplication__title {
   margin: 0;
-  box-sizing: border-box;
   margin-bottom: 20px;
   max-width: 519px;
-  line-height: 64px;
-  font-size: 48px;
+  line-height: 1.4;
   font-family: "Montserrat Semibolt", sans-serif;
+  font-size: 48px;
   font-weight: 600;
+  word-wrap: break-word;
+}
+@media (max-width: 550px) {
+  .aplication__title {
+    font-size: 27px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
 }
 .aplication__description {
   font-family: "Montserrat Regular", sans-serif;
@@ -1657,6 +1674,11 @@ html, body {
   background-position: left;
 }
 
+@media (max-width: 918px) {
+  .aplication {
+    grid-template-columns: 1fr;
+  }
+}
 .rooms-prices {
   margin: 0;
   margin-top: 154px;
@@ -1670,12 +1692,19 @@ html, body {
 .rooms-prices__title .main__title {
   margin-top: 75px;
 }
+@media (max-width: 550px) {
+  .rooms-prices__title .main__title {
+    font-size: 20px;
+  }
+}
 @media (max-width: 660px) {
   .rooms-prices__title {
     grid-template-columns: 1fr;
   }
   .rooms-prices__title .rooms-prices__img {
     margin: 0 auto;
+    width: 250px;
+    height: 181px;
   }
   .rooms-prices__title .main__title {
     margin-top: 0;
@@ -1882,88 +1911,57 @@ html, body {
     width: 30px;
     height: 50px;
   }
+  .photo-gallery > .main__title {
+    font-size: 20px;
+  }
   .controls {
     padding: 0 2px;
   }
 }
+.bg__accommodation {
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: -97px;
+  z-index: -1;
+  opacity: 0.5;
+}
+
 .accommodation {
   position: relative;
   margin-top: 48px;
-}
-.accommodation__content {
-  grid-area: c;
-}
-.accommodation .main__title {
-  margin-top: 123px;
-  margin-bottom: 70px;
+  color: #242424;
+  display: grid;
+  row-gap: 40px;
 }
 .accommodation__section {
-  border-top: 1px solid #F6A6BF;
   display: grid;
-  grid-template-columns: minmax(300px, 470px) 1fr minmax(300px, 570px);
-  grid-template-rows: 1fr;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  grid-template-areas: "h c";
+  grid-template-columns: [left-start] minmax(300px, 470px) [left-end] minmax(10px, 1fr) [right-start] minmax(300px, 570px) [right-end];
 }
-.accommodation__section > p {
-  grid-area: p;
-  margin-top: 30px;
+.accommodation__section--price {
+  grid-template-areas: "t . c" ". . c";
 }
-.accommodation__section > ul {
-  grid-area: l;
+.accommodation__section--rec {
+  grid-template-areas: "t t t" "s . c";
 }
-.accommodation__section > h3 {
-  grid-area: h;
+.accommodation__section--nutrition {
+  grid-template-areas: "t . ." ". . c";
 }
-@media (max-width: 1047px) {
-  .accommodation__section {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "h h h" "c c c";
-  }
-  .accommodation__section__title {
-    grid-column: 1/-1;
-  }
-}
-.accommodation__section:has(p) {
-  grid-template-areas: "h h" "p c";
-  grid-template-rows: 36px 1fr;
-}
-.accommodation__section:has(.accommodation__section > ul) {
-  grid-template-areas: "h c" "l c";
-  grid-template-rows: 36px 1fr;
-}
-.accommodation__section:has(.accommodation__content > p) {
-  grid-template-areas: "h c" "l c";
-}
-.accommodation__section:has(.accommodation__content > img) {
-  grid-template-areas: "h c" "l c";
-  grid-template-rows: 36px 1fr;
-}
-.accommodation__section:has(.accommodation__content > img) > ul {
-  margin-top: 40px;
-}
-.accommodation__title {
-  margin: 0;
-  font-family: "Montserrat SemiBold", sans-serif;
-  font-size: 26px;
-  line-height: 1.4;
-  max-width: 367px;
-  display: inline-block;
-}
-.accommodation__subtitle {
-  font-family: "Montserrat Medium", sans-serif;
-  font-size: 20px;
-  line-height: 1.5;
-  max-width: 452px;
-  color: #848484;
-  margin: 0;
+.accommodation__section--important {
+  grid-template-areas: "t . c" "l . c";
 }
 .accommodation__content {
-  grid-area: c;
-  grid-column: 3/4;
   position: relative;
+  grid-area: c;
+}
+.accommodation__content:has(p) {
+  padding: 0 20px;
+  font-family: "Montserrat Regular", sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.accommodation__content:has(.accommodation__img) {
+  align-content: center;
 }
 .accommodation__content:has(.accommodation__list)::after {
   content: "";
@@ -1974,39 +1972,46 @@ html, body {
   right: 0;
   bottom: 0;
 }
-.accommodation__content > p {
+.accommodation__title {
   margin: 0;
-  margin-left: 20px;
-  font-family: "Montserrat Medium", sans-serif;
-  font-size: 18px;
+  grid-area: t;
+  font-family: "Montserrat SemiBold", sans-serif;
+  font-size: 26px;
   line-height: 1.4;
-  color: #242424;
 }
-.accommodation__content > p + p {
-  margin-top: 25px;
+.accommodation__img {
+  grid-area: i;
+  max-width: 100%;
+}
+.accommodation__subtitle {
+  grid-area: s;
+  font-family: "Montserrat Medium", sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
 }
 .accommodation__list {
-  grid-area: list;
-  display: inline-block;
+  grid-area: l;
+  list-style-type: none;
   padding: 0;
-  margin: 0;
-}
-.accommodation__item {
+  padding-left: 20px;
   font-family: "Montserrat Regular", sans-serif;
   font-size: 18px;
   line-height: 1.4;
-  list-style-type: none;
-  display: flex;
+  font-weight: 400;
+}
+.accommodation__item {
+  position: relative;
 }
 .accommodation__item + .accommodation__item {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 .accommodation__item::before {
+  position: absolute;
   content: "";
   box-sizing: border-box;
   display: block;
   margin-bottom: auto;
-  float: left;
+  left: -20px;
   width: 10px;
   height: 10px;
   background-color: #F6A6BF;
@@ -2016,13 +2021,44 @@ html, body {
   flex-shrink: 0;
 }
 
-.bg__accommodation {
-  position: absolute;
-  top: 0;
-  left: -97px;
-  z-index: -1;
+@media (max-width: 585px) {
+  .accommodation {
+    max-width: 100%;
+  }
+  .accommodation > .main__title {
+    font-family: "Montserrat Semibold";
+    font-size: 25px;
+    line-height: 1.4;
+  }
+  .accommodation__section {
+    display: flex;
+    flex-direction: column;
+  }
 }
-
+@media (max-width: 490px) {
+  .accommodation__title {
+    font-family: "Montserrat Regular";
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .accommodation__list {
+    font-size: 16px;
+  }
+  .accommodation__subtitle {
+    color: #848484;
+    font-family: "Montserrat regular";
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .accommodation__content::after {
+    opacity: 0.5;
+  }
+  .accommodation__content:has(p) {
+    font-size: 16px;
+    padding: 0;
+  }
+}
 .booking-request {
   margin-top: 140px;
   display: grid;
@@ -2069,6 +2105,7 @@ html, body {
   grid-column: 1/-1;
 }
 .booking-request > form > input {
+  color: #848484;
   border: none;
   padding-bottom: 12px;
   font-family: "Montserrat Regular", sans-serif;
@@ -2086,6 +2123,41 @@ html, body {
   border-radius: 35px;
   border: 2px solid #F6A6BF;
   padding: 17px 78px;
+}
+.booking-request .container-select {
+  position: relative;
+}
+.booking-request .container-select::after {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  right: 5px;
+  top: 0px;
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  transform: rotate(-45deg);
+  pointer-events: none;
+}
+.booking-request .container-select > select {
+  border: 0;
+  outline: 0;
+  color: #242424;
+  padding-bottom: 12px;
+  width: 100%;
+  font-family: "Montserrat Regular", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  background-color: transparent;
+  border-bottom: 1px solid #242424;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+form > input.color-text {
+  color: #242424;
 }
 
 .video-monitoring {
@@ -2612,7 +2684,7 @@ html, body {
 .button__link--instagram {
   border-radius: 30px;
   padding: 10px 9px;
-  border: 2px solid #F6A6BF;
+  border: 2px solid #f6a6bf;
   transition: all 500ms ease;
 }
 .button__link--instagram svg {
@@ -2726,13 +2798,14 @@ svg > a > path,
 .glide__slide > img,
 .swiper-button-next,
 .swiper-button-prev,
-div.accordeon__q {
+div.accordeon__q,
+a.header__info-link {
   cursor: url("../img/cursor/pointer.svg"), pointer;
 }
 
 .index-page {
   display: grid;
-  grid-template-columns: minmax(10px, auto) minmax(0, 1200px) minmax(10px, auto);
+  grid-template-columns: minmax(10px, auto) minmax(300px, 1200px) minmax(10px, auto);
   grid-auto-rows: max-content;
   grid-template-rows: auto 1fr auto;
   box-sizing: border-box;
