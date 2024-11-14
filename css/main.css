@@ -1532,6 +1532,7 @@ html, body {
     justify-content: center;
   }
   .aplication__images .paw-menu {
+    display: block;
     max-width: 550px;
     margin-bottom: 50px;
   }
