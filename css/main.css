@@ -1706,8 +1706,9 @@ html, body {
   }
   .rooms-prices__title .rooms-prices__img {
     margin: 0 auto;
-    width: 250px;
-    height: 181px;
+    width: 100%;
+    max-width: 250px;
+    max-height: 181px;
   }
   .rooms-prices__title .main__title {
     margin-top: 0;
@@ -1717,6 +1718,7 @@ html, body {
 
 .rooms_container {
   max-width: 1200px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   column-gap: 30px;
@@ -2709,8 +2711,6 @@ form > input.color-text {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   box-sizing: border-box;
-  min-width: 380px;
-  max-width: 584px;
   flex: 1;
   border: 1px solid #F6A6BF;
 }
@@ -2750,7 +2750,8 @@ form > input.color-text {
 }
 
 .button-book {
-  display: block;
+  display: flex;
+  justify-content: center;
   box-sizing: border-box;
   border: 2px solid #F6A6BF;
   border-radius: 35px;
@@ -2768,12 +2769,13 @@ form > input.color-text {
   padding: 0px;
   aspect-ratio: 1/1.4;
 }
+.swiper__wrapper {
+  width: 100%;
+}
 
 .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 300px;
-  height: 300px;
 }
 
 .swiper-slide img {
