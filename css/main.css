@@ -1610,6 +1610,8 @@ html, body {
 .paw-menu {
   margin-top: 13px;
   margin-bottom: 191px;
+  width: 381px;
+  height: 371px;
 }
 .paw-menu__text {
   fill: #ffffff;
