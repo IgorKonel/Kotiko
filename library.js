@@ -7174,6 +7174,41 @@
     }
   });
 
+  document.addEventListener("DOMContentLoaded", function() {
+    // Функция для форматирования даты в формат YYYY-MM-DD
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    // Получаем текущую дату и завтрашнюю дату
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+
+    // Устанавливаем max дату, добавив 3 месяца к сегодняшней и завтрашней дате
+    const maxStartDate = new Date(today);
+    const maxEndDate = new Date(tomorrow);
+    maxStartDate.setMonth(today.getMonth() + 3);
+    maxEndDate.setMonth(tomorrow.getMonth() + 3);
+
+    // Получаем элементы инпутов
+    const startDateInput = document.getElementById("start-date");
+    const endDateInput = document.getElementById("end-date");
+
+    // Устанавливаем атрибуты для start-date
+    startDateInput.value = formatDate(today);
+    startDateInput.min = formatDate(today);
+    startDateInput.max = formatDate(maxStartDate);
+
+    // Устанавливаем атрибуты для end-date
+    endDateInput.value = formatDate(tomorrow);
+    endDateInput.min = formatDate(tomorrow);
+    endDateInput.max = formatDate(maxEndDate);
+  });
+
   /**
    * SSR Window 4.0.2
    * Better handling for window object in SSR environment
