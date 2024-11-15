@@ -12292,11 +12292,7 @@
       const myScrollY = window.scrollY;
       if (myScrollY  > 600) {
         backToTop.style.display = "flex";
-        // console.log(myScrollY)
-        console.log(backToTop.style.display);
-        console.log(backToTop);
       } else {
-        // console.log(myScrollY)
         backToTop.style.display = "none";
       }
     });
