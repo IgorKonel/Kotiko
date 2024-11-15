@@ -2372,6 +2372,35 @@ form > input.color-text {
   padding-right: 64px;
 }
 
+@media (max-width: 550px) {
+  .video-monitoring .main__title {
+    font-size: 20px;
+  }
+  .video-monitoring__title > p {
+    display: block;
+    padding: 0;
+    font-size: 16px;
+  }
+  .video-monitoring__title + .video-monitoring__list {
+    margin-top: 30px;
+  }
+  .video-monitoring__description {
+    font-family: "Montserrat Regular", sans-serif;
+    font-size: 16px;
+  }
+  .video-monitoring__list {
+    border: 2px solid red;
+    justify-content: center;
+  }
+  .video-monitoring__item {
+    width: 88px;
+    height: 88px;
+  }
+  .video-monitoring__svg {
+    width: 40px;
+    height: 33px;
+  }
+}
 .about-us {
   margin-top: 170px;
 }

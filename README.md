@@ -1,8 +1,6 @@
 
 # Котико ![Static Badge](https://img.shields.io/badge/status-in_develop-orange?style=flat)
 
-
-### Статус: `в разработке` 
 >некоторые блоки сайта скрыты для проверки адаптивности поблочно
 
 ### `Используемые языки`
