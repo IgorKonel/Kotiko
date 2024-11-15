@@ -2380,6 +2380,10 @@ form > input.color-text {
   text-align: center;
   text-decoration: none;
   margin: auto;
+  transition: color 0.5s ease;
+}
+.hide__button:hover {
+  color: #F6A6BF;
 }
 
 @media (max-width: 550px) {
@@ -2983,6 +2987,7 @@ svg > a > path,
 .swiper-button-prev,
 div.accordeon__q,
 a.header__info-link,
-#back-to-menu-link {
+#back-to-menu-link,
+.hide__button {
   cursor: url("../img/cursor/pointer.svg"), pointer;
 }

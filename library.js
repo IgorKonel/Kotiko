@@ -7213,34 +7213,57 @@
   });
 
   document.addEventListener("DOMContentLoaded", function () {
-    // Выбираем все элементы с классом "hide"
-    const elementsToHide = document.querySelectorAll('.hide');
+    // Функция для управления отображением скрытых элементов
+    function toggleHideElements() {
+      const elementsToHide = document.querySelectorAll('.hide');
+      const existingButton = document.querySelector('.hide__button');
 
-    // Создаём ссылку
-    const toggleButton = document.createElement('a');
-    toggleButton.href = '#';
-    toggleButton.className = 'hide__button';
-    toggleButton.textContent = 'Смотреть ещё';
+      // Проверяем ширину экрана
+      if (window.innerWidth < 550) {
+        // Если кнопка уже создана, ничего не делаем
+        if (!existingButton) {
+          // Создаём ссылку
+          const toggleButton = document.createElement('a');
+          toggleButton.href = '#';
+          toggleButton.className = 'hide__button';
+          toggleButton.textContent = 'Смотреть ещё';
 
-    // Скрываем все элементы
-    elementsToHide.forEach(element => {
-        element.style.display = 'none';
-    });
+          // Скрываем элементы
+          elementsToHide.forEach(element => {
+            element.style.display = 'none';
+          });
 
-    // Вставляем ссылку после последнего скрытого элемента
-    if (elementsToHide.length > 0) {
-        elementsToHide[elementsToHide.length - 1].after(toggleButton);
+          // Вставляем ссылку после последнего скрытого элемента
+          if (elementsToHide.length > 0) {
+            elementsToHide[elementsToHide.length - 1].after(toggleButton);
+          }
+
+          // Добавляем обработчик клика для показа/скрытия всех элементов
+          toggleButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            const isHidden = elementsToHide[0].style.display === 'none';
+            elementsToHide.forEach(element => {
+              element.style.display = isHidden ? 'flex' : 'none';
+            });
+            toggleButton.textContent = isHidden ? 'Скрыть' : 'Смотреть ещё';
+          });
+        }
+      } else {
+        // Убираем кнопку и показываем все элементы, если ширина больше или равна 550
+        if (existingButton) {
+          existingButton.remove();
+        }
+        elementsToHide.forEach(element => {
+          element.style.display = '';
+        });
+      }
     }
 
-    // Добавляем обработчик клика для показа/скрытия всех элементов
-    toggleButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        const isHidden = elementsToHide[0].style.display === 'none';
-        elementsToHide.forEach(element => {
-            element.style.display = isHidden ? 'flex' : 'none';
-        });
-        toggleButton.textContent = isHidden ? 'Скрыть' : 'Смотреть ещё';
-    });
+    // Первоначальная проверка
+    toggleHideElements();
+
+    // Отслеживание изменения размера экрана
+    window.addEventListener('resize', toggleHideElements);
   });
 
   /**
