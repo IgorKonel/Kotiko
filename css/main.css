@@ -2493,8 +2493,8 @@ form > input.color-text {
   background-image: url("../img/bg_our-offer.svg");
   background-repeat: no-repeat;
   background-position: 0 0;
-  width: 627px;
-  height: 595px;
+  max-width: 627px;
+  max-height: 595px;
   right: 0;
   z-index: -1;
 }
@@ -2561,6 +2561,8 @@ form > input.color-text {
 }
 .importantly__img {
   transform: scale(-1, 1);
+  max-width: 100%;
+  margin: auto 0;
 }
 .importantly__content {
   padding-top: 100px;
@@ -2581,6 +2583,61 @@ form > input.color-text {
   max-width: 472px;
 }
 
+@media (max-width: 600px) {
+  .about-us__main {
+    row-gap: 30px;
+  }
+  .about-us .main__title {
+    font-size: 20px;
+    order: -2;
+  }
+  .about-us__main > .about-us__question {
+    font-family: "Montserrat Regular", sans-serif;
+    font-size: 18px;
+    order: 0;
+  }
+  .about-us__main > .about-us__question::after {
+    background-position: center;
+  }
+  .about-us__main > .about-us__advantages {
+    order: -1;
+    font-family: "Montserrat Regular", sans-serif;
+    font-size: 16px;
+  }
+  .about-us__main,
+  .our-offer,
+  .importantly {
+    display: flex;
+    flex-direction: column;
+  }
+  .our-offer {
+    padding-bottom: 70px;
+    row-gap: 20px;
+  }
+  .our-offer__title {
+    margin-top: 100px;
+  }
+  .our-offer__item {
+    font-size: 16px;
+  }
+  .importantly {
+    padding: 0;
+    row-gap: 30px;
+  }
+  .importantly__title {
+    font-size: 20px;
+  }
+  .importantly__content {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  .importantly__img {
+    padding: 0 37px;
+    order: 2;
+  }
+}
 .fears {
   margin-top: 170px;
 }
