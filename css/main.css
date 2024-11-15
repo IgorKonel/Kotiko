@@ -2372,6 +2372,16 @@ form > input.color-text {
   padding-right: 64px;
 }
 
+.hide__button {
+  font-family: "Montserrat Regular", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #848484;
+  text-align: center;
+  text-decoration: none;
+  margin: auto;
+}
+
 @media (max-width: 550px) {
   .video-monitoring .main__title {
     font-size: 20px;
@@ -2389,12 +2399,15 @@ form > input.color-text {
     font-size: 16px;
   }
   .video-monitoring__list {
-    border: 2px solid red;
-    justify-content: center;
+    column-gap: 22px;
+    row-gap: 25px;
   }
   .video-monitoring__item {
-    width: 88px;
-    height: 88px;
+    width: 82px;
+    height: 82px;
+  }
+  .video-monitoring__item > a {
+    padding: 22px 35px;
   }
   .video-monitoring__svg {
     width: 40px;
@@ -2938,6 +2951,20 @@ form > input.color-text {
   grid-column: 1/-1;
 }
 
+.index-page {
+  display: grid;
+  grid-template-columns: minmax(10px, auto) minmax(300px, 1200px) minmax(10px, auto);
+  grid-auto-rows: max-content;
+  grid-template-rows: auto 1fr auto;
+  box-sizing: border-box;
+}
+.index-page > * {
+  grid-column: 2/3;
+}
+.index-page > .footer, .index-page > .address, .index-page > .sky {
+  grid-column: 1/-1;
+}
+
 body,
 html,
 *,
@@ -2955,20 +2982,7 @@ svg > a > path,
 .swiper-button-next,
 .swiper-button-prev,
 div.accordeon__q,
-a.header__info-link {
+a.header__info-link,
+#back-to-menu-link {
   cursor: url("../img/cursor/pointer.svg"), pointer;
-}
-
-.index-page {
-  display: grid;
-  grid-template-columns: minmax(10px, auto) minmax(300px, 1200px) minmax(10px, auto);
-  grid-auto-rows: max-content;
-  grid-template-rows: auto 1fr auto;
-  box-sizing: border-box;
-}
-.index-page > * {
-  grid-column: 2/3;
-}
-.index-page > .footer, .index-page > .address, .index-page > .sky {
-  grid-column: 1/-1;
 }

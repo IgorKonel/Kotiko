@@ -7212,6 +7212,37 @@
     endDateInput.max = formatDate(maxEndDate);
   });
 
+  document.addEventListener("DOMContentLoaded", function () {
+    // Выбираем все элементы с классом "hide"
+    const elementsToHide = document.querySelectorAll('.hide');
+
+    // Создаём ссылку
+    const toggleButton = document.createElement('a');
+    toggleButton.href = '#';
+    toggleButton.className = 'hide__button';
+    toggleButton.textContent = 'Смотреть ещё';
+
+    // Скрываем все элементы
+    elementsToHide.forEach(element => {
+        element.style.display = 'none';
+    });
+
+    // Вставляем ссылку после последнего скрытого элемента
+    if (elementsToHide.length > 0) {
+        elementsToHide[elementsToHide.length - 1].after(toggleButton);
+    }
+
+    // Добавляем обработчик клика для показа/скрытия всех элементов
+    toggleButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const isHidden = elementsToHide[0].style.display === 'none';
+        elementsToHide.forEach(element => {
+            element.style.display = isHidden ? 'flex' : 'none';
+        });
+        toggleButton.textContent = isHidden ? 'Скрыть' : 'Смотреть ещё';
+    });
+  });
+
   /**
    * SSR Window 4.0.2
    * Better handling for window object in SSR environment
