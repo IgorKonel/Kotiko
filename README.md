@@ -1,6 +1,17 @@
-# Учебный проект Котико
 
-### Статус: `в разработке`
+# Котико ![Static Badge](https://img.shields.io/badge/status-in_develop-orange?style=flat)
+
+
+### Статус: `в разработке` 
+>некоторые блоки сайта скрыты для проверки адаптивности поблочно
+
+### `Используемые языки`
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) 
+
+### `Сборка проекта`
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) ![Gulp](https://img.shields.io/badge/GULP-%23CF4647.svg?style=for-the-badge&logo=gulp&logoColor=white) ![RollupJS](https://img.shields.io/badge/RollupJS-ef3335?style=for-the-badge&logo=rollup.js&logoColor=white) ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white) 
+
+
 
 Данный сайт уже существует по [ссылке][original_website].
 
@@ -29,6 +40,7 @@
 - написан скрипт для подстановки начального значения дат в форму на сегодняшнее число
 
 
+## 
 
 <!-- Список ссылок -->
 [original_website]: https://kotikozoohotel.ru/
