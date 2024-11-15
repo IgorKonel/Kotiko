@@ -12230,4 +12230,22 @@
     },
   });
 
+  // Back to menu
+  document.addEventListener("DOMContentLoaded", function () {
+    const backToTop = document.getElementById("back-to-menu-link");
+
+    window.addEventListener("scroll", function () {
+      const myScrollY = window.scrollY;
+      if (myScrollY  > 600) {
+        backToTop.style.display = "flex";
+        // console.log(myScrollY)
+        console.log(backToTop.style.display);
+        console.log(backToTop);
+      } else {
+        // console.log(myScrollY)
+        backToTop.style.display = "none";
+      }
+    });
+  });
+
 })();

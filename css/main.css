@@ -1332,6 +1332,37 @@ html, body {
   font-size: 40px;
 }
 
+#back-to-menu-link {
+  position: fixed;
+  text-decoration: none;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  z-index: 2;
+  top: 40px;
+  right: 0;
+  color: #ffffff;
+  background-color: #28AFC9;
+  border-radius: 20px 0px 0px 20px;
+  text-align: center;
+}
+#back-to-menu-link > p {
+  margin: 0;
+  font-family: "Montserrat SemiBold", sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+  padding-bottom: 5px;
+}
+#back-to-menu-link > svg {
+  padding-top: 5px;
+  width: 50px;
+  height: 50px;
+  fill: #ffffff;
+}
+
 .footer {
   display: grid;
   grid-template-columns: minmax(10px, auto) minmax(0, 1200px) minmax(10px, auto);
@@ -1988,7 +2019,7 @@ html, body {
 }
 .accommodation__section {
   display: grid;
-  grid-template-columns: [left-start] minmax(300px, 470px) [left-end] minmax(10px, 1fr) [right-start] minmax(300px, 570px) [right-end];
+  grid-template-columns: [left-start] minmax(0, 470px) [left-end] minmax(10px, 1fr) [right-start] minmax(0, 570px) [right-end];
 }
 .accommodation__section--price {
   grid-template-areas: "t . c" ". . c";
@@ -2801,6 +2832,7 @@ form > input.color-text {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   box-sizing: border-box;
+  min-width: 300px;
   flex: 1;
   border: 1px solid #F6A6BF;
 }
