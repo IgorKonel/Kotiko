@@ -2845,6 +2845,7 @@ form > input.color-text {
   }
 }
 .address {
+  padding-top: 70px;
   display: grid;
   grid-template-columns: minmax(10px, auto) minmax(0, 1200px) minmax(10px, auto);
   background-color: #FAF7F5;
@@ -2883,7 +2884,11 @@ form > input.color-text {
 .address .how-to-pass {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 80px;
+  column-gap: 60px;
+}
+.address .how-to-pass__wrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
 }
 .address .how-to-pass__description {
   font-family: "Montserrat Regular", sans-serif;
@@ -2892,13 +2897,20 @@ form > input.color-text {
   color: #242424;
   max-width: 236px;
 }
+.address .how-to-pass__start {
+  display: inline-flex;
+  flex-direction: column;
+}
+.address .how-to-pass__start > img {
+  max-width: 249px;
+  max-height: 238px;
+}
 .address .how-to-pass__title {
   font-family: "Montserrat SemiBold", sans-serif;
   font-size: 26px;
   line-height: 1.4;
-}
-.address .how-to-pass__title-text {
   margin: 0;
+  display: inline-block;
 }
 
 /* Видимое сообщение */
@@ -2932,6 +2944,45 @@ form > input.color-text {
   }
   100% {
     opacity: 0;
+  }
+}
+@media (max-width: 1160px) {
+  .how-to-pass {
+    justify-content: center;
+  }
+  .how-to-pass__start {
+    display: flex;
+    min-width: 100%;
+  }
+  .how-to-pass__start .how-to-pass {
+    justify-content: center;
+  }
+  .how-to-pass__start > img {
+    display: none;
+  }
+}
+@media (max-width: 550px) {
+  .address {
+    padding-top: 30px;
+  }
+  .address .map {
+    margin-bottom: 30px;
+  }
+  .address .main__title {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  .address__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  .address__info > p {
+    margin: 0;
+    font-size: 18px;
+  }
+  .address__info #copy_address {
+    font-size: 16px;
   }
 }
 .button {

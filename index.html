@@ -794,7 +794,83 @@
     </main>
     
     <!-- Адрес -->
+    <section class="address">
+  <div class="address__wrapper">
+    <h2 class="main__title">Адрес и контакты</h2>
+  
+    <div class="address__info">
+      <p class="address__address">г. Санкт-Петербург ул. Ключевая, д.32</p>
+      <button id="copy_address" type="button">
+        Скопировать адрес для навигатора
+        <div id="popupMessage" class="hidden">Адрес скопирован!</div>
+      </button>
+      
+    </div>
+    <div class="map">
+      <div style="position:relative;overflow:hidden;"><a href="https://yandex.kz/maps/ru/org/kotiko/78589228606/?lang=ru&utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Котико</a><a href="https://yandex.kz/maps/ru/2/saint-petersburg/category/pet_hotel/184107220/?lang=ru&utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Гостиница для животных в Санкт‑Петербурге</a><iframe src="https://yandex.kz/map-widget/v1/?ll=30.411282%2C59.975126&mode=search&oid=78589228606&ol=biz&sctx=ZAAAAAgBEAAaKAoSCaBtNeuMOlNAEXWuKCUEo0VAEhIJ%2BWcG8YEd1z8RyY%2F4FWu4wj8iBgABAgMEBSgKOABAra4HSAFqAmt6nQHNzEw9oAEAqAEAvQFXA3zCwgEGvuyh4qQCggIM0LrQvtGC0LjQutC%2BigIAkgIAmgIMZGVza3RvcC1tYXBz&sll=30.411282%2C59.975126&sspn=0.017346%2C0.004818&text=%D0%BA%D0%BE%D1%82%D0%B8%D0%BA%D0%BE&z=16.38" width="100%" height="400" min-height="230" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+      <!-- <script
+        type="text/javascript"
+        charset="utf-8"
+        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7a26ce0872d74a2b6b348f13bb0899178f5ee7aaec7a3aa2b1015afc2d632c95&amp;max-width=1200&amp;height=350&amp;lang=ru_RU&amp;scroll=true"
+        async
+        defer
+      ></script> -->
+    </div>
     
+      <div class="how-to-pass">
+          <div class="how-to-pass__start">
+            <h4 class="how-to-pass__title">Как пройти</h4>
+            <img src="../img/how-to-pass/paw.svg" alt="Лапка">
+          </div>
+      
+          <div class="how-to-pass__step">
+            <img src="./img/how-to-pass/step1.jpg" alt="Шаг первый">
+            <p class="how-to-pass__description">Мы находимся в здании многоуровневой парковки со стороны двора</p>
+          </div>
+      
+          <div class="how-to-pass__step">
+            <img src="./img/how-to-pass/step2.jpg" alt="Шаг второй">
+            <p class="how-to-pass__description">Вход со двора под вывеской "Вход" 5 этаж</p>
+          </div>
+          <div class="how-to-pass__step">
+            <img src="./img/how-to-pass/step3.jpg" alt="Шаг третий">
+            <p class="how-to-pass__description">Если навигатор привел Вас со стороны бизнес центра к шлагбауму, можно пройти по тропинке направо</p>
+          </div>
+        </div>
+
+  
+  
+  </div>
+</section>
+
+<script>
+  const popupMessage = document.getElementById('popupMessage');
+
+  document
+    .querySelector("#copy_address")
+    .addEventListener("click", function () {
+      navigator.clipboard
+        .writeText(document.querySelector(".address__address").textContent)
+        .then(function () {
+          // console.log('Text copied to clipboard');
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
+
+        popupMessage.classList.remove('hidden');
+  
+        // Перезапускаем анимацию, удалив и добавив элемент (для повторных кликов)
+        void popupMessage.offsetWidth; // Сбрасываем CSS-анимацию
+        popupMessage.classList.add('fade');
+
+        // Скрываем сообщение по завершении анимации
+        setTimeout(() => {
+          popupMessage.classList.add('hidden');
+        }, 3000);
+    });
+</script>
+
     <!-- FOOTER -->
     
 
