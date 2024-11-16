@@ -7587,6 +7587,9 @@
     };
     animate();
   }
+  function getSlideTransformEl(slideEl) {
+    return slideEl.querySelector('.swiper-slide-transform') || slideEl.shadowRoot && slideEl.shadowRoot.querySelector('.swiper-slide-transform') || slideEl;
+  }
   function elementChildren(element, selector) {
     if (selector === void 0) {
       selector = '';
@@ -7676,6 +7679,16 @@
     }
     return parents;
   }
+  function elementTransitionEnd(el, callback) {
+    function fireCallBack(e) {
+      if (e.target !== el) return;
+      callback.call(el, e);
+      el.removeEventListener('transitionend', fireCallBack);
+    }
+    if (callback) {
+      el.addEventListener('transitionend', fireCallBack);
+    }
+  }
   function elementOuterSize(el, size, includeMargins) {
     const window = getWindow();
     {
@@ -7684,6 +7697,14 @@
   }
   function makeElementsArray(el) {
     return (Array.isArray(el) ? el : [el]).filter(e => !!e);
+  }
+  function getRotateFix(swiper) {
+    return v => {
+      if (Math.abs(v) > 0 && swiper.browser && swiper.browser.need3dFix && Math.abs(v) % 90 === 0) {
+        return v + 0.001;
+      }
+      return v;
+    };
   }
 
   let support;
@@ -12271,9 +12292,236 @@
     });
   }
 
+  function effectInit(params) {
+    const {
+      effect,
+      swiper,
+      on,
+      setTranslate,
+      setTransition,
+      overwriteParams,
+      perspective,
+      recreateShadows,
+      getEffectParams
+    } = params;
+    on('beforeInit', () => {
+      if (swiper.params.effect !== effect) return;
+      swiper.classNames.push(`${swiper.params.containerModifierClass}${effect}`);
+      if (perspective && perspective()) {
+        swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
+      }
+      const overwriteParamsResult = overwriteParams ? overwriteParams() : {};
+      Object.assign(swiper.params, overwriteParamsResult);
+      Object.assign(swiper.originalParams, overwriteParamsResult);
+    });
+    on('setTranslate', () => {
+      if (swiper.params.effect !== effect) return;
+      setTranslate();
+    });
+    on('setTransition', (_s, duration) => {
+      if (swiper.params.effect !== effect) return;
+      setTransition(duration);
+    });
+    on('transitionEnd', () => {
+      if (swiper.params.effect !== effect) return;
+      if (recreateShadows) {
+        if (!getEffectParams || !getEffectParams().slideShadows) return;
+        // remove shadows
+        swiper.slides.forEach(slideEl => {
+          slideEl.querySelectorAll('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').forEach(shadowEl => shadowEl.remove());
+        });
+        // create new one
+        recreateShadows();
+      }
+    });
+    let requireUpdateOnVirtual;
+    on('virtualUpdate', () => {
+      if (swiper.params.effect !== effect) return;
+      if (!swiper.slides.length) {
+        requireUpdateOnVirtual = true;
+      }
+      requestAnimationFrame(() => {
+        if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {
+          setTranslate();
+          requireUpdateOnVirtual = false;
+        }
+      });
+    });
+  }
+
+  function effectTarget(effectParams, slideEl) {
+    const transformEl = getSlideTransformEl(slideEl);
+    if (transformEl !== slideEl) {
+      transformEl.style.backfaceVisibility = 'hidden';
+      transformEl.style['-webkit-backface-visibility'] = 'hidden';
+    }
+    return transformEl;
+  }
+
+  function effectVirtualTransitionEnd(_ref) {
+    let {
+      swiper,
+      duration,
+      transformElements,
+      allSlides
+    } = _ref;
+    const {
+      activeIndex
+    } = swiper;
+    const getSlide = el => {
+      if (!el.parentElement) {
+        // assume shadow root
+        const slide = swiper.slides.filter(slideEl => slideEl.shadowRoot && slideEl.shadowRoot === el.parentNode)[0];
+        return slide;
+      }
+      return el.parentElement;
+    };
+    if (swiper.params.virtualTranslate && duration !== 0) {
+      let eventTriggered = false;
+      let transitionEndTarget;
+      if (allSlides) {
+        transitionEndTarget = transformElements;
+      } else {
+        transitionEndTarget = transformElements.filter(transformEl => {
+          const el = transformEl.classList.contains('swiper-slide-transform') ? getSlide(transformEl) : transformEl;
+          return swiper.getSlideIndex(el) === activeIndex;
+        });
+      }
+      transitionEndTarget.forEach(el => {
+        elementTransitionEnd(el, () => {
+          if (eventTriggered) return;
+          if (!swiper || swiper.destroyed) return;
+          eventTriggered = true;
+          swiper.animating = false;
+          const evt = new window.CustomEvent('transitionend', {
+            bubbles: true,
+            cancelable: true
+          });
+          swiper.wrapperEl.dispatchEvent(evt);
+        });
+      });
+    }
+  }
+
+  function createShadow(suffix, slideEl, side) {
+    const shadowClass = `swiper-slide-shadow${side ? `-${side}` : ''}${` swiper-slide-shadow-${suffix}` }`;
+    const shadowContainer = getSlideTransformEl(slideEl);
+    let shadowEl = shadowContainer.querySelector(`.${shadowClass.split(' ').join('.')}`);
+    if (!shadowEl) {
+      shadowEl = createElement('div', shadowClass.split(' '));
+      shadowContainer.append(shadowEl);
+    }
+    return shadowEl;
+  }
+
+  function EffectFlip(_ref) {
+    let {
+      swiper,
+      extendParams,
+      on
+    } = _ref;
+    extendParams({
+      flipEffect: {
+        slideShadows: true,
+        limitRotation: true
+      }
+    });
+    const createSlideShadows = (slideEl, progress) => {
+      let shadowBefore = swiper.isHorizontal() ? slideEl.querySelector('.swiper-slide-shadow-left') : slideEl.querySelector('.swiper-slide-shadow-top');
+      let shadowAfter = swiper.isHorizontal() ? slideEl.querySelector('.swiper-slide-shadow-right') : slideEl.querySelector('.swiper-slide-shadow-bottom');
+      if (!shadowBefore) {
+        shadowBefore = createShadow('flip', slideEl, swiper.isHorizontal() ? 'left' : 'top');
+      }
+      if (!shadowAfter) {
+        shadowAfter = createShadow('flip', slideEl, swiper.isHorizontal() ? 'right' : 'bottom');
+      }
+      if (shadowBefore) shadowBefore.style.opacity = Math.max(-progress, 0);
+      if (shadowAfter) shadowAfter.style.opacity = Math.max(progress, 0);
+    };
+    const recreateShadows = () => {
+      // Set shadows
+      swiper.params.flipEffect;
+      swiper.slides.forEach(slideEl => {
+        let progress = slideEl.progress;
+        if (swiper.params.flipEffect.limitRotation) {
+          progress = Math.max(Math.min(slideEl.progress, 1), -1);
+        }
+        createSlideShadows(slideEl, progress);
+      });
+    };
+    const setTranslate = () => {
+      const {
+        slides,
+        rtlTranslate: rtl
+      } = swiper;
+      const params = swiper.params.flipEffect;
+      const rotateFix = getRotateFix(swiper);
+      for (let i = 0; i < slides.length; i += 1) {
+        const slideEl = slides[i];
+        let progress = slideEl.progress;
+        if (swiper.params.flipEffect.limitRotation) {
+          progress = Math.max(Math.min(slideEl.progress, 1), -1);
+        }
+        const offset = slideEl.swiperSlideOffset;
+        const rotate = -180 * progress;
+        let rotateY = rotate;
+        let rotateX = 0;
+        let tx = swiper.params.cssMode ? -offset - swiper.translate : -offset;
+        let ty = 0;
+        if (!swiper.isHorizontal()) {
+          ty = tx;
+          tx = 0;
+          rotateX = -rotateY;
+          rotateY = 0;
+        } else if (rtl) {
+          rotateY = -rotateY;
+        }
+        slideEl.style.zIndex = -Math.abs(Math.round(progress)) + slides.length;
+        if (params.slideShadows) {
+          createSlideShadows(slideEl, progress);
+        }
+        const transform = `translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateFix(rotateX)}deg) rotateY(${rotateFix(rotateY)}deg)`;
+        const targetEl = effectTarget(params, slideEl);
+        targetEl.style.transform = transform;
+      }
+    };
+    const setTransition = duration => {
+      const transformElements = swiper.slides.map(slideEl => getSlideTransformEl(slideEl));
+      transformElements.forEach(el => {
+        el.style.transitionDuration = `${duration}ms`;
+        el.querySelectorAll('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').forEach(shadowEl => {
+          shadowEl.style.transitionDuration = `${duration}ms`;
+        });
+      });
+      effectVirtualTransitionEnd({
+        swiper,
+        duration,
+        transformElements
+      });
+    };
+    effectInit({
+      effect: 'flip',
+      swiper,
+      on,
+      setTranslate,
+      setTransition,
+      recreateShadows,
+      getEffectParams: () => swiper.params.flipEffect,
+      perspective: () => true,
+      overwriteParams: () => ({
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        watchSlidesProgress: true,
+        spaceBetween: 0,
+        virtualTranslate: !swiper.params.cssMode
+      })
+    });
+  }
+
   new Swiper(".SwipeRooms", {
-    modules: [Navigation, Pagination],
-    // effect: "flip",
+    modules: [Navigation, Pagination, EffectFlip],
+    effect: "flip",
+    loop: true,
     grabCursor: true,
     pagination: {
       el: ".swiper-pagination",
