@@ -2746,14 +2746,14 @@ form > input.color-text {
   margin: 0;
   margin-bottom: 30px;
   font-family: "Montserrat SemiBold", sans-serif;
-  font-size: 20;
+  font-size: 20px;
   line-height: 1.4;
 }
 .collaboration__description {
   margin: 0;
   max-width: 491px;
   font-family: "Montserrat Medium", sans-serif;
-  font-size: 20;
+  font-size: 20px;
   line-height: 1.5;
 }
 .collaboration__list {
@@ -2770,7 +2770,7 @@ form > input.color-text {
     grid-template-columns: 246px 246px;
   }
 }
-@media (max-width: 540px) {
+@media (max-width: 550px) {
   .collaboration__list {
     justify-self: center;
     max-width: fit-content;
@@ -2794,6 +2794,7 @@ form > input.color-text {
   background-image: url("../img/bg_list_collab.svg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  filter: saturate(200%);
 }
 .collaboration__item > p {
   display: block;
@@ -2801,7 +2802,7 @@ form > input.color-text {
   max-width: 200px;
   text-align: center;
 }
-@media (max-width: 540px) {
+@media (max-width: 550px) {
   .collaboration__item {
     border: unset;
     background-size: 73px 60px;
@@ -2818,9 +2819,31 @@ form > input.color-text {
   }
   .collaboration__item > p {
     text-align: start;
+    font-size: 20px;
   }
 }
 
+@media (max-width: 550px) {
+  .collaboration__text-block > .main__title {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  .collaboration__text-block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  .collaboration__description {
+    order: 2;
+    font-family: "Montserrat Regular";
+    font-size: 16px;
+  }
+  .collaboration__title {
+    order: 3;
+    font-size: 18px;
+    font-family: "Montserrat Regular";
+  }
+}
 .address {
   display: grid;
   grid-template-columns: minmax(10px, auto) minmax(0, 1200px) minmax(10px, auto);
